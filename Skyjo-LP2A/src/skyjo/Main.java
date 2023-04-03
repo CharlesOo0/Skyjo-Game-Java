@@ -242,18 +242,13 @@ public class Main {
 			
 			int playerFinishedFirst = 0; // Memorise wich player has revealed his board entirely first
 			// This variable need to be outside and initialised in case the initialisation messed up
-			// And there is a board entirely revealed a the beginning
+			// And there is a board entirely revealed at the beginning
 			// Which is theorically impossible
 			// However our program don't know that it is
 			
-			for (int l = 0; l < 4; l++) {
-				for (int z = 3; z < 4; z++) {
-					boards.get(0).getBoardBox(l, z).setCard(5);
-					boards.get(0).getBoardBox(l, z).setHidden(false);
-				}
-			}
+		while(!points.isHundred()) {
 			
-			
+		
 			while (!boards.isNotHidden()) {
 				
 				int currentPage = 1; // Memorise the page
@@ -348,8 +343,6 @@ public class Main {
 				} // FOR
 				
 			} // WHILE
-			/*--- Every player play turn by turn ---*/
-			
 			/*--- When every player has play until one of the boards is completely revealed we count the point ---*/
 			
 			int[] pointsArray = new int[nbPlayer];
@@ -365,9 +358,11 @@ public class Main {
 				points.addPoint(i, pointsArray[i]);
 			}
 			
-			victoryScreen(points);
+			/*--- When every player has play until the of the boards is completely revealed we count the point ---*/	
+		}//WHILE
+			/*--- Every player play turn by turn ---*/
 			
-			/*--- When every player has play until the of the boards is completely revealed we count the point ---*/
+		victoryScreen(points);
 			
 		}
 		
