@@ -159,9 +159,6 @@ public class Main {
 			return;
 		}
 		
-		Deck deck = new Deck(); // Initialise a new deck
-		Discard discard = new Discard(); // Initialise the discard
-		
 		
 		/*-- Getting the number of player --*/
 		System.out.println("How many player ?");
@@ -172,6 +169,8 @@ public class Main {
 		}
 		for (int i = 0; i < 50; ++i) System.out.println();
 
+		Deck deck = new Deck(); // Initialise a new deck
+		Discard discard = new Discard(); // Initialise the discard
 		BoardArray boards = new BoardArray(nbPlayer, deck); // Initialise the boards of every player
 		PointManager points = new PointManager(nbPlayer); // Initialise the system of point
 		discard.push(discard.draw());
@@ -224,9 +223,6 @@ public class Main {
 				// And there is a board entirely revealed at the beginning
 				// Which is theorically impossible
 				// However our program don't know that it is
-				
-			
-				
 			
 				while (!boards.isNotHidden()) {
 					
@@ -341,13 +337,19 @@ public class Main {
 				
 				/*--- When every player has play until the of the boards is completely revealed we count the point ---*/
 				
-			
+				/*--- Reset the game ---*/
 						
-			victoryScreen(points); // Display victory screen
+				deck = new Deck(); // Initialise a new deck
+				discard = new Discard(); // Initialise the discard
+				boards = new BoardArray(nbPlayer, deck); // Initialise the boards of every player
+				discard.push(discard.draw());
 			
+				/*--- Reset the game ---*/
+				
+				for (int x = 0; x < 50; ++x) System.out.println(); // Clear screen
 		}
 		
-		
+		victoryScreen(points); // Display victory screen
 		
 		myObj.close(); // Close the scanner
 	}
