@@ -30,6 +30,22 @@ Skyjo :
 
 	- Modéliser le plateau de jeu de chaque joueur : FAIT
 		-Tableau d'object de deux dimensions quasi dynamique
+		
+Fonction à refaire en UI :
+
+	BoardArray :
+		-displayTargetBoard(); // Affiche un tableau précis
+		-displayBoards(); // Affiches tout les tableaux de jeux ->1*
+	BoardSet :
+		-displayBoardSet(); // Affiche un tableau de jeu donnée 1*<-
+	PointManager : 
+		-display(); // Affiche les points de tout les joueurs
+	Main :
+		-page1(); // PLAYER BOARD
+		-page2(); // EVERY BOARDS
+		-page3(); // POINTS
+		-page4(); // SWITCH CARD
+		-victoryScreen(); // VICTORY
 
 	-Affichage du jeux : FAIT
 		-Tout les plateaux ?
