@@ -101,7 +101,8 @@ public class Deck extends LinkedList<CardElement> {
 				cardPicked <= super.get(0).getCardNumber() + super.get(1).getCardNumber() + super.get(2).getCardNumber() + super.get(3).getCardNumber() + super.get(4).getCardNumber() + super.get(5).getCardNumber() + super.get(6).getCardNumber() + super.get(7).getCardNumber() + super.get(8).getCardNumber() + super.get(9).getCardNumber() + super.get(10).getCardNumber() + super.get(11).getCardNumber() + super.get(12).getCardNumber() ? 12:
 				cardPicked <= super.get(0).getCardNumber() + super.get(1).getCardNumber() + super.get(2).getCardNumber() + super.get(3).getCardNumber() + super.get(4).getCardNumber() + super.get(5).getCardNumber() + super.get(6).getCardNumber() + super.get(7).getCardNumber() + super.get(8).getCardNumber() + super.get(9).getCardNumber() + super.get(10).getCardNumber() + super.get(11).getCardNumber() + super.get(12).getCardNumber() + super.get(13).getCardNumber() ? 13:
 				cardPicked <= super.get(0).getCardNumber() + super.get(1).getCardNumber() + super.get(2).getCardNumber() + super.get(3).getCardNumber() + super.get(4).getCardNumber() + super.get(5).getCardNumber() + super.get(6).getCardNumber() + super.get(7).getCardNumber() + super.get(8).getCardNumber() + super.get(9).getCardNumber() + super.get(10).getCardNumber() + super.get(11).getCardNumber() + super.get(12).getCardNumber() + super.get(13).getCardNumber() + super.get(14).getCardNumber() ? 14:		
-				null); // Pick a random car in the deck
+				null); // Pick a random card in the deck
+		
 		
 		chosedCard.lowerCard(); // Lower the number of copy of the card picked
 		this.deck_card -= 1; // Lower the number of card in the deck
