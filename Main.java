@@ -63,6 +63,30 @@ public class Main {
 		
 	}
 	
+	public static int[] askUserChoice(BoardArray boards, int player) {
+		int row, column;
+		
+		boards.displayTargetBoard(player); // Print the player board
+		
+		System.out.println("Enter card reverse :");
+		System.out.println("Enter row : ");
+		row = myObj.nextInt();
+		while (row < 1 || row > 4) { // Acquisition control
+			System.out.println("Enter row (Must be between 1 and 4) : ");
+			row = myObj.nextInt();
+		}
+			
+		System.out.println("Enter column : ");
+		column = myObj.nextInt();
+		while (column < 1 || column > boards.get(player).getColumn()) { // Acquisition control
+			System.out.println("Enter column (Must be between 1 and "+boards.get(player).getColumn()+") : ");
+			column = myObj.nextInt();
+		}
+		
+		int[] choice = {row,column}; // Set up the player choice has an array so it facilitate the return
+		return choice;
+	}
+	
 	/*! @brief : Acquisition control relative to the page the player is
 	 */
 	public static int acquisitionControl(int userChoice, int currentPage) {
@@ -159,6 +183,9 @@ public class Main {
 			return;
 		}
 		
+		Deck deck = new Deck(); // Initialise a new deck
+		Discard discard = new Discard(); // Initialise the discard
+		
 		
 		/*-- Getting the number of player --*/
 		System.out.println("How many player ?");
@@ -169,8 +196,6 @@ public class Main {
 		}
 		for (int i = 0; i < 50; ++i) System.out.println();
 
-		Deck deck = new Deck(); // Initialise a new deck
-		Discard discard = new Discard(); // Initialise the discard
 		BoardArray boards = new BoardArray(nbPlayer, deck); // Initialise the boards of every player
 		PointManager points = new PointManager(nbPlayer); // Initialise the system of point
 		discard.push(discard.draw());
@@ -223,6 +248,9 @@ public class Main {
 				// And there is a board entirely revealed at the beginning
 				// Which is theorically impossible
 				// However our program don't know that it is
+				
+			
+				
 			
 				while (!boards.isNotHidden()) {
 					
@@ -230,6 +258,7 @@ public class Main {
 					int[] userSwitch; // Memorise the switch the player want to make
 					int userChoice; // Variable to read the user choice
 					int card; // Memorise the card
+					char reverseOrNot;
 					boolean alreadyFinished = false;
 					boolean userPlayed = false; // Boolean that represent if the player has play or not
 					
@@ -266,11 +295,29 @@ public class Main {
 									break; // Unlike the discard this control is necessary the deck can be empty even if it's a rare evenement
 								}
 								card = deck.draw(); // Draw a card
-								userSwitch = page4(boards,indexPlayer,card); // Get the card choice of the player for the switch 
-								discard.push(boards.get(indexPlayer).switchCardBoard(userSwitch[0]-1, userSwitch[1]-1, card)); // Switch the card drawn and the choice of the player
+								System.out.println("Card : " + card);
+								System.out.println("Do you want to switch the card or not ? (Y) Yes (N) No");
+								reverseOrNot = myObj.next().charAt(0);
+								while (reverseOrNot != 'Y' && reverseOrNot != 'N') {
+									System.out.println("Do you want to switch the card or not ? (Y) Yes (N) No");
+									reverseOrNot = myObj.next().charAt(0);
+								}
+								
+								if (reverseOrNot == 'Y') {
+									userSwitch = page4(boards,indexPlayer,card); // Get the card choice of the player for the switch 
+									discard.push(boards.get(indexPlayer).switchCardBoard(userSwitch[0]-1, userSwitch[1]-1, card)); // Switch the card drawn and the choice of the player
+								}else {
+									do { // Implement the rule where if the player don't want to switch
+										// With one of his card he has to reverse one of his not revealed card
+										userSwitch = askUserChoice(boards,indexPlayer);
+									}while (!boards.get(indexPlayer).getBoardBox(userSwitch[0]-1, userSwitch[1]-1).getHidden()); // Until he chose a card that is not reversed
+									boards.get(indexPlayer).getBoardBox(userSwitch[0]-1, userSwitch[1]-1).setHidden(false); // Reverse the card
+									discard.push(card);
+								}
+								
 								
 								// Specific Rules
-								if (boards.get(indexPlayer).checkColumn(userSwitch[1]-1)) { // Implemant the rule where if all the card of a column are the same
+								if (boards.get(indexPlayer).checkColumn(userSwitch[1]-1)) { // Implement the rule where if all the card of a column are the same
 									boards.get(indexPlayer).eraseColumn(userSwitch[1]-1); // We erase the column
 									return;
 								}
@@ -337,19 +384,13 @@ public class Main {
 				
 				/*--- When every player has play until the of the boards is completely revealed we count the point ---*/
 				
-				/*--- Reset the game ---*/
-						
-				deck = new Deck(); // Initialise a new deck
-				discard = new Discard(); // Initialise the discard
-				boards = new BoardArray(nbPlayer, deck); // Initialise the boards of every player
-				discard.push(discard.draw());
 			
-				/*--- Reset the game ---*/
-				
-				for (int x = 0; x < 50; ++x) System.out.println(); // Clear screen
+						
+			victoryScreen(points); // Display victory screen
+			
 		}
 		
-		victoryScreen(points); // Display victory screen
+		
 		
 		myObj.close(); // Close the scanner
 	}
