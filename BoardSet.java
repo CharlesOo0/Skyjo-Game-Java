@@ -91,10 +91,12 @@ public class BoardSet {
 			return false;
 		} // This control is useless because our program manage everything so this error can't happen
 		// but it stay usefull for the developpement
-		
+		if( board[0][indexColumn].getHidden() ) { // If the first card hisn't revealed we return false
+			return false;
+		}
 		int cardTmp = board[0][indexColumn].getCard(); // We memorise the first card of the column choiced
 		for (int i = 1; i < rowSize; i++) { // We iterate over the column choiced
-			if ( cardTmp != board[i][indexColumn].getCard()) { // If we encounter a different card than the first one
+			if ( cardTmp != board[i][indexColumn].getCard() || board[i][indexColumn].getHidden()) { // If we encounter a different card than the first one or a not reavealed card
 				return false; // that means column isn't the same so false
 			}
 		}
@@ -163,7 +165,7 @@ public class BoardSet {
 		
 		for (int i = 0; i < rowSize; i++) { // Iterate over the line of our bidimensionnal array
 			
-			if (i != 0) { // Esthetic
+			/*if (i != 0) { // Esthetic
 				output = new String();
 				for (int k = 0; k < columnSize; k++) {
 					if ( k  != columnSize-1) {
@@ -173,7 +175,7 @@ public class BoardSet {
 					}
 				}
 				System.out.println(output);
-			}
+			}*/
 			
 			output = new String(); // Reinitialise each line the string
 			for (int j = 0; j < columnSize; j++) { // Iterate over the column of our bidimensionnal array
@@ -196,3 +198,4 @@ public class BoardSet {
 	}
 	
 }
+
