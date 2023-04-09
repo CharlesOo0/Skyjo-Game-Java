@@ -5,6 +5,7 @@ package skyjo;
  * */
 
 public class CardElement {
+	
 	private int card;  // Represent the card  i.e. {-2,-1,0,...,12}
 	private int card_number; // The number of copy of the card
 	
