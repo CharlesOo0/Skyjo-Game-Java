@@ -14,7 +14,7 @@ public class DeckV2 extends LinkedList<CardElement> {
 	private Random rand; // Pick random number
 	
 	/*---------------- Constructors ----------------*/
-	Deck() {
+	DeckV2() {
 		super();
 		this.deck_card = 150; // There are 150 card in the game
 		rand = new Random();
