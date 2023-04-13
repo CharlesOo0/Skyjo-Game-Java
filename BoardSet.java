@@ -68,7 +68,7 @@ public class BoardSet {
 	 * just to facilitate the add to the discard (Because the only case where we erase a column is when
 	 * we have 3 same cards). The we iterate of the origninal Board, and we copy it into the new Board,
 	 * of course we avoid to copy the column we want to erase. Then the new Board became the original board.
-	 * The garbage collector take care of the old board.
+	 * The garbage collector take care of the old board. We return the card memorise to facilitate the add to the discard.
 	 */
 	public int eraseColumn(int indexColumn) {
 		
@@ -100,7 +100,16 @@ public class BoardSet {
 	}
 	
 	/*! @brief : The aim of this method is to tell us if a particular column of the board
-	 * contain only the same card
+	 *  contain only the same card
+	 *  @param indexColumn int that represent the index of the column we want to check
+	 *
+	 * Behavior :
+	 * First we check if the argument is in range if not we return false and and error message.
+	 * If it is we check if first card of the column is revealed or not, if it's not return false.
+	 * Because in skyjo we can only erase column that we see. And because we will get this card value to check
+	 * if every card are the same. Then we memorise the first card. And we iterate over the other card of the column.
+	 * if we encounter a card that is not revealed or that is different we return false. If we can iterate over the entire
+	 * board that mean it match our condition so we return true.
 	 */
 	public boolean checkColumn(int indexColumn) {
 		
@@ -123,6 +132,10 @@ public class BoardSet {
 	}
 	
 	/*! @brief : The method return the number of point a board represent
+	 *
+	 * Behavior :
+	 * Iterate in the entire board and just sum to a variable the value of every cards.
+	 * At the end return it.
 	 */
 	public int calculatePoint() {
 		
@@ -136,6 +149,10 @@ public class BoardSet {
 	}
 	
 	/*! @brief : Check if every box of a boardSet are hidden or not
+	 *
+	 * Behavior :
+	 * Iterate over every box of our board if we encounter a card that is hidden we return false.
+	 * Else that mean that all the card are reversed so we return true.
 	 */
 	public boolean boardNotHidden() {
 		for (int i = 0; i < rowSize; i++) { // Iterate over every line of the board
