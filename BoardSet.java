@@ -166,9 +166,18 @@ public class BoardSet {
 	}
 	
 	/*! @brief : This fonction implement the card switching between deck/discard and player board
+	 *  @param indexRow int index that represent the row box where the card we want to switch is
+	 *  @param indexColumn int index that represent the row box where the card we want to switch is
+	 *  @param card int that represent the value of the card we make the switch with
+	 *
+	 * Behavior : 
+	 * First we make an acquisition control that is useless because our program manage everything so index are never
+	 * out of range. Then we memorise the card of the board in a variable. After that we change the card of the board,
+	 * with the new card with setCard method from BoardCard. And if the card we change with was hidden we now reverse it,
+	 * because we have switch it. At the end return the old card from the board to facilitate the add to the discard.
 	 */
 	public int switchCardBoard(int indexRow, int indexColumn, int card) {
-		if (indexColumn >= columnSize || indexColumn < 0) { // Acquistion control
+		if (indexColumn >= columnSize || indexColumn < 0) || indexRow < 0 || indexRow >= rowSize) { // Acquistion control
 			System.out.println("Error index out of range !");
 			return 999; // Here 999 is considered as an error
 		} // This control is useless because our program manage everything so this error can't happen
@@ -183,6 +192,10 @@ public class BoardSet {
 	}
 	
 	/*! @brief : Check if BoardSet is empty
+	 *
+	 * Behavior :
+	 * We check if columnSize equal to 0 if so that mean that there are no more column in the board,
+	 * so it's empty.
 	 */
 	public boolean isEmpty() {
 		if (columnSize == 0) { // If column size equal 0 that means there are no more column so its empty
@@ -193,6 +206,10 @@ public class BoardSet {
 	}
 	
 	/*! @brief : display the board set in front of the player
+	 *
+	 * Behavior :
+	 * Iterate of the two dimensionnal board, increment every card value to a string.
+	 * Print the string every time we have finish to read a line of the board. And reset the string.
 	 */
 	public void displayBoardSet() {
 		String output; // String where we can increment our card
