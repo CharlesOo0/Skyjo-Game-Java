@@ -24,27 +24,36 @@ public class BoardSet {
 	
 	/*---------------- Getters ----------------*/ 
 
-	public BoardCard[][] getBoard() {
+	public BoardCard[][] getBoard() { // Get the BoardCard two dimensionnal array that represent the board of a player
 		return this.board;
 	}
 	
-	
-	public BoardCard getBoardBox(int i, int j) {
+	public BoardCard getBoardBox(int i, int j) { // Get a BoardCard in a specific box of the board
 		return this.board[i][j];
 	}
-	public int getColumn() {
+	
+	public int getColumn() { // Get the size of the column
 		return this.columnSize;
 	}
 	
 	/*---------------- Setters ----------------*/
 	
-	public void setBoxHidden(boolean hidden, int indexRow, int indexColumn) {
-		if (indexRow >= rowSize || indexRow < 0 || indexColumn >= rowSize || indexColumn < 0) {
+	/*! @brief Set the status of a specific BoardCard in the board
+	 *  @param hidden This will be the new status of the card
+	 *  @param indexRow This represent the target row of the box in the board
+	 *  @param indexColumn This represent the target column of the box in the board
+	 *
+	 * Behavior :
+	 * First Check if the box target entered is in range, if it's not print index out of range.
+	 * Then simply change the status of the box with setHidden() method from BoardCard.
+	 */
+	public void setBoxHidden(boolean hidden, int indexRow, int indexColumn) { 
+		if (indexRow >= rowSize || indexRow < 0 || indexColumn >= rowSize || indexColumn < 0) { // Acquisition control
 			System.out.println("Error index out of range !");
 			return;
 		}
 		
-		board[indexRow][indexColumn].setHidden(hidden);
+		board[indexRow][indexColumn].setHidden(hidden); // Set the new status of the box
 	}
 	
 	/*---------------- Methods ----------------*/
