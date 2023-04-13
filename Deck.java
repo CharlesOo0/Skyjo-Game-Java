@@ -7,7 +7,7 @@ import java.util.Random;
  * @brief Class that implement the deck in the game
  * */
 
-public class Deck extends LinkedList<CardElement> {
+public class DeckV2 extends LinkedList<CardElement> {
 
 	private static final long serialVersionUID = 1L;
 	private int deck_card; // Number of card in the deck
