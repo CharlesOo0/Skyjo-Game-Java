@@ -18,16 +18,24 @@ public class PointManager extends LinkedList<Integer>{
 			System.out.println("Error players must be between 2 and 8 !");
 			this.nbPlayer = 2; // By default we put two 
 		}else {
-			this.nbPlayer = nbPlayer;
+			this.nbPlayer = nbPlayer; // If the argument pass the test then set it
 		}
 		
-		for (int i = 0; i < nbPlayer ; i++) {
+		for (int i = 0; i < nbPlayer ; i++) { // Set the default value of point of every player
 			super.add(0);
 		}
 		
 	}
 	
 	/*---------------- Getters ----------------*/
+	/*! @brief : Get the points of a specific player
+	 *  @param index int that represent the player choosed
+	 *
+	 * Behavior :
+	 * Check if the argument is not out of range if not return the point.
+	 * With the get method of the LinkedList type.
+	 * Else return 999 as an error.
+	 */
 	public int getPoint(int index) {
 		if (index > 0 || index < nbPlayer) { // Acquisition control
 			return super.get(index);
@@ -37,7 +45,11 @@ public class PointManager extends LinkedList<Integer>{
 
 	/*---------------- Method ----------------*/
 	
-	/*!@brief We check if a player has >= 100 points
+	/*! @brief : We check if a player has >= 100 points
+	 * 
+	 * Behavior :
+	 * Iterate over every players box. If we encounteur someone that
+	 * has >= 100 points we return true. Else we return false.
 	 */
 	public boolean isHundred() {
 		for (int i = 0; i < nbPlayer ; i++) { // Iterate over the linked list 
@@ -48,7 +60,11 @@ public class PointManager extends LinkedList<Integer>{
 		return false;
 	}
 	
-	/*!@brief The goal of this method is to display the points of every player
+	/*! @brief : The goal of this method is to display the points of every player
+	 * 
+	 * Behavior :
+	 * Esthetic display of every player points we iterate over the array, that
+	 * represent players and print there points plus the it is associated to.
 	 */
 	public void display() {
 		String output = new String();
@@ -61,7 +77,15 @@ public class PointManager extends LinkedList<Integer>{
 		
 	}
 	
-	/*! @brief This method permit to add point to a specific player
+	/*! @brief : This method permit to add point to a specific player
+	 *  @param index int that represent the player targeted by the method
+	 *  @param point integer that represent the point we want to add to him
+	 *
+	 * Behavior :
+	 * We have chose to put integer type to point to manage in case it's NULL.
+	 * First we check if the point we want to add is NULL if it is we had 0.
+	 * Then we check if the index picked is in range if not we print and error.
+	 * And end the method. If we pass then we just add the point to the specified player.
 	 */
 	public void addPoint(int index, Integer point) {
 			
@@ -73,10 +97,15 @@ public class PointManager extends LinkedList<Integer>{
 			return;
 		}
 			
-		super.set(index, super.get(index)+ point);
+		super.set(index, super.get(index) + point);
 	}
 	
 	/*! @brief : return the index of the player with the lowest point
+	 *
+	 * Behavior :
+	 * We memorise the points of the first player. Then we iterate over
+	 * the other player point, if we find a player that has more least point we change
+	 * change the lowest player index. Then we return this index.
 	 */
 	public int lowestPoint() {
 		int lowest = this.getPoint(0);
