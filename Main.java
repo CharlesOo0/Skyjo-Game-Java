@@ -66,9 +66,10 @@ public class Main {
 	public static int[] askUserChoice(BoardArray boards, int player) {
 		int row, column;
 		
+		for (int x = 0; x < 50; ++x) System.out.println(); // Clear screen
 		boards.displayTargetBoard(player); // Print the player board
 		
-		System.out.println("Enter card reverse :");
+		System.out.println("Enter card reverse (Must not be already reaversed) :");
 		System.out.println("Enter row : ");
 		row = myObj.nextInt();
 		while (row < 1 || row > 4) { // Acquisition control
@@ -295,10 +296,13 @@ public class Main {
 									break; // Unlike the discard this control is necessary the deck can be empty even if it's a rare evenement
 								}
 								card = deck.draw(); // Draw a card
+								boards.displayTargetBoard(indexPlayer); // Print the player board
 								System.out.println("Card : " + card);
 								System.out.println("Do you want to switch the card or not ? (Y) Yes (N) No");
 								reverseOrNot = myObj.next().charAt(0);
 								while (reverseOrNot != 'Y' && reverseOrNot != 'N') {
+									for (int x = 0; x < 50; ++x) System.out.println(); // Clear screen
+									boards.displayTargetBoard(indexPlayer); // Print the player board
 									System.out.println("Do you want to switch the card or not ? (Y) Yes (N) No");
 									reverseOrNot = myObj.next().charAt(0);
 								}
@@ -312,7 +316,7 @@ public class Main {
 										userSwitch = askUserChoice(boards,indexPlayer);
 									}while (!boards.get(indexPlayer).getBoardBox(userSwitch[0]-1, userSwitch[1]-1).getHidden()); // Until he chose a card that is not reversed
 									boards.get(indexPlayer).getBoardBox(userSwitch[0]-1, userSwitch[1]-1).setHidden(false); // Reverse the card
-									discard.push(card);
+									discard.push(card); // Put the card not picked in the discard
 								}
 								
 								
