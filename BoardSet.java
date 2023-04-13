@@ -38,7 +38,7 @@ public class BoardSet {
 	
 	/*---------------- Setters ----------------*/
 	
-	/*! @brief Set the status of a specific BoardCard in the board
+	/*! @brief : Set the status of a specific BoardCard in the board
 	 *  @param hidden This will be the new status of the card
 	 *  @param indexRow This represent the target row of the box in the board
 	 *  @param indexColumn This represent the target column of the box in the board
