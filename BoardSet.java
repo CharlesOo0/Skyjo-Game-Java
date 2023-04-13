@@ -58,8 +58,17 @@ public class BoardSet {
 	
 	/*---------------- Methods ----------------*/
 	
-	/*!brief : The aim of this fonction is to erase a precise column of a board
-	 * it will be usefull to implemant an important rule of the skyjo
+	/*! @brief : The aim of this fonction is to erase a precise column of a board
+	 *  it will be usefull to implemant an important rule of the skyjo
+	 *  @param indexColumn This int represent the index of the column we want to erase
+	 * 
+	 * Behavior :
+	 * First we check if the argument is not out of range. If it's not we allocate the memory
+	 * of a new Board, but it's column size is lowered by 1. We memorise one of the card of the column,
+	 * just to facilitate the add to the discard (Because the only case where we erase a column is when
+	 * we have 3 same cards). The we iterate of the origninal Board, and we copy it into the new Board,
+	 * of course we avoid to copy the column we want to erase. Then the new Board became the original board.
+	 * The garbage collector take care of the old board.
 	 */
 	public int eraseColumn(int indexColumn) {
 		
